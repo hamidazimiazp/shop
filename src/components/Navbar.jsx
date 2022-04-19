@@ -22,7 +22,12 @@ const Navbar = () => {
             }
         },
         title: {
-            marginLeft: 30
+            marginLeft: 30,
+            "& > a": {
+                color: "#fff",
+                fontSize: 22,
+                textDecoration: "none"
+            }
         },
         menuItems: {
             display: "flex",
@@ -42,7 +47,7 @@ const Navbar = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.menuItems}>
                         <Typography variant="h6" className={classes.title}>
-                            Shop
+                            <Link to="/">Shop</Link>
                         </Typography>
                         <div className={classes.linkWrapper}>
                             <Link to="/products/">products</Link>
