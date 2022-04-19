@@ -4,13 +4,15 @@ import { BASE_URL } from "../../configs/index";
 
 
 export const api = ({ dispatch }) => next => async action => {
-    if (action.type !== actions.apiCallBegan.type) return next(action);
+    if (action.type !== actions.apiCallBegan.toString()) return next(action);
+
 
     const { url, method, data, onSuccess, onError, onStart, onFaild } = action.payload;
 
     if (onStart) {
         dispatch({ type: onStart });
     }
+
     next(action);
 
     try {
@@ -20,27 +22,21 @@ export const api = ({ dispatch }) => next => async action => {
             method,
             data
         });
-
-        // general 
-        dispatch({ type: actions.apiCallSuccees(response.data) });
-
+        // general
+        dispatch(actions.apiCallSuccees({ data: response.data }));
         // select
         if (onSuccess) {
-            dispatch({ type: onSuccess, payload: { data: response.data } })
+            dispatch({ type: onSuccess, payload: { data: response.data } });
         }
-
-
     } catch (error) {
         // general
-        dispatch({ type: actions.apiCallFaild(error) });
-
-        // select 
+        dispatch(actions.apiCallFaild({ message: error.message }));
         if (onFaild) {
             dispatch({ type: onFaild });
         }
+        // select
         if (onError) {
-            dispatch({ type: onError, payload: { error: error.message } });
+            dispatch({ type: onError, payload: { message: error.message } });
         }
-
     }
 }
