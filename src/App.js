@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import configureStore from "./redux/store/store";
-import * as productsActions from "./redux/particles/products";
-import { Provider } from 'react';
+import { Provider } from 'react-redux';
 
 
 const store = configureStore();
