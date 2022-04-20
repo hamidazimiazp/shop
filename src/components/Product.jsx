@@ -15,6 +15,7 @@ const Product = (props) => {
 
     const useStyles = makeStyles(theme => ({
         root: {
+            position: "relative",
             maxWidth: 345,
             margin: "20px auto",
             "&:hover div img": {
@@ -34,6 +35,15 @@ const Product = (props) => {
                 transition: ".3s all"
             }
         },
+        constSpan: {
+            position: "absolute",
+            right: 0,
+            background: "hotpink",
+            color: "#fff",
+            zIndex: 5,
+            padding: 8,
+            borderBottomLeftRadius: 7,
+        }
     }));
 
     const classes = useStyles();
@@ -43,6 +53,9 @@ const Product = (props) => {
     return (
         <>
             <Card className={classes.root}>
+                <span className={classes.constSpan}>
+                    $ {price}
+                </span>
                 <CardActionArea>
                     <div className={classes.media}>
                         <img src={image} alt={title} />
