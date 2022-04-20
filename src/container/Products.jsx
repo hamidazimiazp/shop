@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Loading';
-import { loadProducts } from '../redux/particles/products';
 import Product from "../components/Product";
 import { Grid, makeStyles } from '@material-ui/core';
 

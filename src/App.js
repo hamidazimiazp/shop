@@ -19,12 +19,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path='/products/product/:id' element={<ProductDetail />} />
-        <Route path='/products/' element={<ProductsView />} />
-        <Route path='/' element={<HomeView />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <>
+        <Routes>
+          <Route path='/products/product/:id' element={<ProductDetail />} />
+          <Route path='/products/' element={<ProductsView />} />
+          <Route path='/' element={<HomeView />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </>
     </>
   );
 }
