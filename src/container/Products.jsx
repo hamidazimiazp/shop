@@ -24,7 +24,6 @@ const ProductsView = () => {
     const loading = useSelector(state => state.entities.products.loading);
 
     useEffect(() => {
-        dispatch(loadProducts());
     }, []);
 
 
@@ -37,8 +36,9 @@ const ProductsView = () => {
                     <Grid container className={classes.container}>
                         {
                             products.map(item => {
-                                return <Grid item sm={6} md={4} lg={3}>
+                                return <Grid item sm={6} md={4} lg={3} key={item.id}>
                                     <Product
+                                        id={item.id}
                                         title={item.title}
                                         image={item.image}
                                         category={item.category}

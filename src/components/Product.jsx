@@ -9,6 +9,7 @@ import {
     Typography
 } from '@material-ui/core';
 import { textShortener } from "../utils/tools";
+import { Link } from 'react-router-dom';
 
 
 const Product = (props) => {
@@ -48,7 +49,7 @@ const Product = (props) => {
 
     const classes = useStyles();
 
-    const { title, price, description, category, image } = props;
+    const { id, title, price, description, category, image } = props;
 
     return (
         <>
@@ -58,7 +59,7 @@ const Product = (props) => {
                 </span>
                 <CardActionArea>
                     <div className={classes.media}>
-                        <img src={image} alt={title} />
+                        <img loading='lazy' src={image} alt={title} />
                     </div>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -71,7 +72,7 @@ const Product = (props) => {
                 </CardActionArea>
                 <CardActions style={{ justifyContent: "space-around" }}>
                     <Button size="small" color="primary">
-                        Detail
+                        <Link to={`/products/product/${id}`} style={{ textDecoration: "none", color: "#3f51b5" }}>Details</Link>
                     </Button>
                     <Button size="small" color="primary" style={{
                         background: "hotpink",
