@@ -11,7 +11,7 @@ const ProductsView = () => {
     const useStyles = makeStyles(theme => ({
         container: {
             marginTop: 50,
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center"
         }
     }));
@@ -37,7 +37,7 @@ const ProductsView = () => {
                     <Grid container className={classes.container}>
                         {
                             products.map(item => {
-                                return <Grid item sm={4}>
+                                return <Grid item sm={6} md={4} lg={3}>
                                     <Product
                                         title={item.title}
                                         image={item.image}

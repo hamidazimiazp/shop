@@ -16,7 +16,13 @@ const Product = (props) => {
     const useStyles = makeStyles(theme => ({
         root: {
             maxWidth: 345,
-            margin: "20px auto"
+            margin: "20px auto",
+            "&:hover div img": {
+                transform: "scale(.8)",
+            },
+            "&:hover": {
+                boxShadow: "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
+            }
         },
         media: {
             height: 350,
@@ -24,7 +30,8 @@ const Product = (props) => {
             "& > img": {
                 height: "100%",
                 width: "100%",
-                objectFit: "contain"
+                objectFit: "contain",
+                transition: ".3s all"
             }
         },
     }));
@@ -45,7 +52,7 @@ const Product = (props) => {
                             {textShortener(title, 10)}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {textShortener(description, 130)}
+                            {textShortener(description, 110)}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -53,7 +60,10 @@ const Product = (props) => {
                     <Button size="small" color="primary">
                         Detail
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" style={{
+                        background: "hotpink",
+                        color: "#fff",
+                    }}>
                         Add to Cart
                     </Button>
                 </CardActions>
