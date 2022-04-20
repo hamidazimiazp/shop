@@ -1,8 +1,9 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../components/Loading';
 import Product from "../components/Product";
 import { Grid, makeStyles } from '@material-ui/core';
+import { loadProducts } from '../redux/particles/products';
 
 
 const ProductsView = () => {
@@ -22,9 +23,10 @@ const ProductsView = () => {
     const products = useSelector(state => state.entities.products.list);
     const loading = useSelector(state => state.entities.products.loading);
 
-    useEffect(() => {
-    }, []);
 
+    useEffect(() => {
+        if (!products.length) dispatch(loadProducts());
+    }, []);
 
     return (
         <>
