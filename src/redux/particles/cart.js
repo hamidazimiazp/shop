@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { sumItems } from "../../utils";
 
 
-const reducer = createSlice({
+const slice = createSlice({
     name: "cart",
     initialState: {
         list: [],
@@ -66,4 +66,6 @@ const reducer = createSlice({
             }
         }
     }
-})
+});
+
+export const reducer = slice.reducer;
