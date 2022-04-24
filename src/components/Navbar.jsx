@@ -14,7 +14,7 @@ const Navbar = () => {
             justifyContent: "space-between"
         },
         linkWrapper: {
-            marginTop: 4,
+            marginTop: 5,
             "& > a": {
                 marginLeft: 30,
                 color: "#fff",
@@ -23,7 +23,6 @@ const Navbar = () => {
             }
         },
         title: {
-            marginLeft: 30,
             "& > a": {
                 color: "#fff",
                 fontSize: 22,
