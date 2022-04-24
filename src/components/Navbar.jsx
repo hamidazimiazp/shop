@@ -56,7 +56,7 @@ const Navbar = () => {
                             <Link to="/products/">products</Link>
                         </div>
                     </div>
-                    <Badge badgeContent={quantities} className={classes.badge} color="error" overlap="rectangular">
+                    <Badge badgeContent={quantities === 0 ? "0" : quantities} className={classes.badge} color="error" overlap="rectangular">
                         <AddShoppingCart />
                     </Badge>
                 </Toolbar>
