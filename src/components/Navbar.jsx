@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Typography, Badge } from '@material-ui/cor
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AddShoppingCart } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
@@ -41,6 +42,8 @@ const Navbar = () => {
 
     const classes = useStyles();
 
+    const quantities = useSelector(state => state.entities.cart.itemsCounter);
+
     return (
         <>
             <AppBar position="static">
@@ -53,7 +56,7 @@ const Navbar = () => {
                             <Link to="/products/">products</Link>
                         </div>
                     </div>
-                    <Badge badgeContent={4} className={classes.badge} color="error" overlap="rectangular">
+                    <Badge badgeContent={(quantities < 1) ? "0" : quantities} className={classes.badge} color="error" overlap="rectangular">
                         <AddShoppingCart />
                     </Badge>
                 </Toolbar>

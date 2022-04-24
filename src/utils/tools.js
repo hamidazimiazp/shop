@@ -7,9 +7,9 @@ export const textShortener = (string, len) => {
 }
 
 
-export const sumItems = (list) => {
-    const totalPrice = list.reduce((total, product) => total + (product.price * product.quantity), 0);
-    const itemsCounter = list.reduce((total, product) => total + product.quantity, 0)
+export const sumItems = list => {
+    const itemsCounter = list.reduce((total, product) => total + product.quantity, 0);
+    const totalPrice = list.reduce((total, product) => total + (product.price * product.quantity), 0).toFixed(2);
 
 
     return {
