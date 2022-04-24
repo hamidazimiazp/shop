@@ -23,3 +23,12 @@ export const isInCart = (state, id) => {
     const status = !!state.list.find(item => item.id === id);
     return status;
 }
+
+
+export const quntityCount = (state, id) => {
+    const index = state.list.findIndex(item => item.id === id);
+    if (index === -1) {
+        return false;
+    }
+    return state.list[index].quantity;
+}

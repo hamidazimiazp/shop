@@ -11,9 +11,9 @@ import {
 import { textShortener } from "../utils/tools";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../redux/particles/cart';
-import { isInCart } from "../utils/tools";
-
+import { addItem, decreaseItem, increaseItem, removeItem } from '../redux/particles/cart';
+import { isInCart, quntityCount } from "../utils/tools";
+import { Delete } from '@material-ui/icons';
 
 const Product = (props) => {
 
@@ -52,7 +52,7 @@ const Product = (props) => {
 
     const classes = useStyles();
 
-    const { title, price, description, category, image } = props.data;
+    const { title, price, description, image } = props.data;
 
 
     const dispatch = useDispatch();
@@ -81,20 +81,42 @@ const Product = (props) => {
                     <Button size="small" color="primary">
                         <Link to={`/products/product/${props.id}`} style={{ textDecoration: "none", color: "#3f51b5" }}>Details</Link>
                     </Button>
-                    {
-                        isInCart(state, props.id) ?
+                    <div>
+                        {
+                            (quntityCount(state, props.id) > 1) &&
                             <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                                onClick={() => dispatch(decreaseItem(props.data))}
                             >
-                                +
+                                -
                             </Button>
-                            :
+                        }
+                        {
+                            (quntityCount(state, props.id) === 1) &&
                             <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
-                                onClick={() => dispatch(addItem(props.data))}
+                                onClick={() => dispatch(removeItem(props.data))}
                             >
-                                Add to Cart
+                                <Delete />
                             </Button>
-                    }
-
+                        }
+                        {
+                            (quntityCount(state, props.id) > -1) &&
+                            <span style={{ margin: "0 12px", color: "#3f51b5" }} >{quntityCount(state, props.id)}</span>
+                        }
+                        {
+                            isInCart(state, props.id) ?
+                                <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                                    onClick={() => dispatch(increaseItem(props.data))}
+                                >
+                                    +
+                                </Button>
+                                :
+                                <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                                    onClick={() => dispatch(addItem(props.data))}
+                                >
+                                    Add to Cart
+                                </Button>
+                        }
+                    </div>
                 </CardActions>
             </Card>
         </>

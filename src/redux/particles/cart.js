@@ -24,28 +24,25 @@ const slice = createSlice({
             }
         },
         removeItem: (state, action) => {
-            const newList = state.list.filter(item => item.id !== action.payload.id);
-            return {
-                ...state,
-                list: [...newList],
-                ...sumItems(state.list)
-            }
+            const index = state.list.findIndex(item => item.id === action.payload.id);
+            state.list.splice(index, 1);
+            const { itemsCounter, totalPrice } = sumItems(state.list);
+            state.itemsCounter = itemsCounter;
+            state.totalPrice = totalPrice;
         },
         increaseItem: (state, action) => {
             const index = state.list.findIndex(item => item.id === action.payload.id);
             state.list[index].quantity++;
-            return {
-                ...state,
-                ...sumItems(state.list)
-            }
+            const { itemsCounter, totalPrice } = sumItems(state.list);
+            state.itemsCounter = itemsCounter;
+            state.totalPrice = totalPrice;
         },
         decreaseItem: (state, action) => {
             const index = state.list.findIndex(item => item.id === action.payload.id);
             state.list[index].quantity--;
-            return {
-                ...state,
-                ...sumItems(state.list)
-            }
+            const { itemsCounter, totalPrice } = sumItems(state.list);
+            state.itemsCounter = itemsCounter;
+            state.totalPrice = totalPrice;
         },
         checkout: (state, action) => {
             return {
