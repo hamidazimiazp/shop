@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sumItems } from "../../utils";
+import { sumItems } from "../../utils/tools";
 
 
 const slice = createSlice({
