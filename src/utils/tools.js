@@ -17,3 +17,9 @@ export const sumItems = list => {
         totalPrice
     }
 }
+
+
+export const isInCart = (state, id) => {
+    const status = !!state.list.find(item => item.id === id);
+    return status;
+}
