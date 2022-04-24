@@ -5,3 +5,15 @@ export const textShortener = (string, len) => {
     }
     return newString;
 }
+
+
+const sumItem = (list) => {
+    const totalPrice = list.reduce((total, product) => total + (product.price * product.quantity), 0);
+    const itemsCounter = list.reduce((total, product) => total + product.quantity, 0)
+
+
+    return {
+        itemsCounter,
+        totalPrice
+    }
+}
