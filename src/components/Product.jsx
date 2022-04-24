@@ -84,7 +84,7 @@ const Product = (props) => {
                     <div>
                         {
                             (quntityCount(state, props.id) > 1) &&
-                            <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                            <Button size="small" color="primary" variant='contained'
                                 onClick={() => dispatch(decreaseItem(props.data))}
                             >
                                 -
@@ -92,7 +92,7 @@ const Product = (props) => {
                         }
                         {
                             (quntityCount(state, props.id) === 1) &&
-                            <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                            <Button size="small" color="secondary" variant='contained'
                                 onClick={() => dispatch(removeItem(props.data))}
                             >
                                 <Delete />
@@ -104,13 +104,13 @@ const Product = (props) => {
                         }
                         {
                             isInCart(state, props.id) ?
-                                <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                                <Button size="small" color="primary" variant='contained'
                                     onClick={() => dispatch(increaseItem(props.data))}
                                 >
                                     +
                                 </Button>
                                 :
-                                <Button size="small" color="primary" style={{ background: "hotpink", color: "#fff", }}
+                                <Button size="small" color="primary" variant='contained'
                                     onClick={() => dispatch(addItem(props.data))}
                                 >
                                     Add to Cart

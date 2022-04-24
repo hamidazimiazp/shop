@@ -10,7 +10,7 @@ const ProductsView = () => {
 
     const useStyles = makeStyles(theme => ({
         container: {
-            marginTop: 50,
+            marginTop: 100,
             justifyContent: "center",
             alignItems: "center"
         }
