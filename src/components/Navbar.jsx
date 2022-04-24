@@ -98,6 +98,11 @@ const Navbar = () => {
             background: "#fff",
             zIndex: 999,
             boxShadow: "0 2px 2px rgba(0,0, 0, 0.2)"
+        },
+        emptyWarning: {
+            textAlign: "center",
+            padding: 30,
+            color: "red",
         }
     }));
 
@@ -126,8 +131,8 @@ const Navbar = () => {
                     </Badge>
                     <div className={classes.showCartPanel}>
                         <div className={classes.header}>
-                            <Typography variant="subtitle2" color="initial">
-                                Total Price : ${totalPrice}
+                            <Typography variant="subtitle2" color="textSecondary">
+                                {(quantities > 1) ? `${quantities} Products` : `${quantities} Product`}
                             </Typography>
                             <Button size="small" variant="contained" color="primary"
 
@@ -136,72 +141,77 @@ const Navbar = () => {
                             </Button>
                         </div>
                         {
-                            cart.map(item => {
-                                return (
-                                    <div key={item.id}>
-                                        <Grid container style={{ padding: 10 }}>
-                                            <Grid item sm={4} className={classes.imageCardWrapper}>
-                                                <img src={item.image} alt={item.title} width="70%" />
-                                                <div style={{ marginTop: 20 }}>
-                                                    <span>
-                                                        ${item.price}
-                                                    </span>
-                                                </div>
-                                            </Grid>
-                                            <Grid item sm={8}>
-                                                <h4>{textShortener(item.title, 22)}</h4>
-                                                <div className={classes.buttonsWrapper}>
-                                                    {
-                                                        (quntityCount(state, item.id) > 1) &&
-                                                        <Button classes size="medium" variant="contained" color="primary"
-                                                            onClick={() => dispatch(decreaseItem(item))}
-                                                        >
-                                                            -
-                                                        </Button>
-                                                    }
-                                                    {
-                                                        (quntityCount(state, item.id) === 1) &&
-                                                        <Button size="medium" variant="contained" color="secondary"
-                                                            onClick={() => dispatch(removeItem(item))}
-                                                        >
-                                                            <Delete />
-                                                        </Button>
-                                                    }
-                                                    {
-                                                        (quntityCount(state, item.id) > -1) &&
-                                                        <span style={{ margin: "0 12px", color: "#3f51b5" }} >{quntityCount(state, item.id)}</span>
-                                                    }
-                                                    {
-                                                        isInCart(state, item.id) ?
-                                                            <Button size="medium" variant="contained" color="primary"
-                                                                onClick={() => dispatch(increaseItem(item))}
+                            quantities > 0 ?
+                                cart.map(item => {
+                                    return (
+                                        <div key={item.id}>
+                                            <Grid container style={{ padding: 10 }}>
+                                                <Grid item sm={4} className={classes.imageCardWrapper}>
+                                                    <img src={item.image} alt={item.title} width="70%" />
+                                                    <div style={{ marginTop: 20 }}>
+                                                        <span>
+                                                            {`$${item.price}`}
+                                                        </span>
+                                                    </div>
+                                                </Grid>
+                                                <Grid item sm={8}>
+                                                    <h4>{textShortener(item.title, 22)}</h4>
+                                                    <div className={classes.buttonsWrapper}>
+                                                        {
+                                                            (quntityCount(state, item.id) > 1) &&
+                                                            <Button classes size="medium" variant="contained" color="primary"
+                                                                onClick={() => dispatch(decreaseItem(item))}
                                                             >
-                                                                +
+                                                                -
                                                             </Button>
-                                                            :
-                                                            <Button size="medium" variant="contained" color="primary"
-                                                                onClick={() => dispatch(addItem(item))}
+                                                        }
+                                                        {
+                                                            (quntityCount(state, item.id) === 1) &&
+                                                            <Button size="medium" variant="contained" color="secondary"
+                                                                onClick={() => dispatch(removeItem(item))}
                                                             >
-                                                                Add to Cart
+                                                                <Delete />
                                                             </Button>
-                                                    }
-                                                </div>
+                                                        }
+                                                        {
+                                                            (quntityCount(state, item.id) > -1) &&
+                                                            <span style={{ margin: "0 12px", color: "#3f51b5" }} >{quntityCount(state, item.id)}</span>
+                                                        }
+                                                        {
+                                                            isInCart(state, item.id) ?
+                                                                <Button size="medium" variant="contained" color="primary"
+                                                                    onClick={() => dispatch(increaseItem(item))}
+                                                                >
+                                                                    +
+                                                                </Button>
+                                                                :
+                                                                <Button size="medium" variant="contained" color="primary"
+                                                                    onClick={() => dispatch(addItem(item))}
+                                                                >
+                                                                    Add to Cart
+                                                                </Button>
+                                                        }
+                                                    </div>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                        <hr style={{ border: "1px solid #dddd" }} />
-                                    </div>
-                                );
-                            })
+                                            <hr style={{ border: "1px solid #dddd" }} />
+                                        </div>
+                                    );
+                                })
+                                :
+                                <Typography className={classes.emptyWarning} variant="h5" color="initial">Cart is Empty</Typography>
                         }
                         <div className={classes.footer}>
                             <Typography variant="h6" color="initial">
-                                Total Price : ${totalPrice}
+                                Total Price : {`$${totalPrice}`}
                             </Typography>
-                            <Button size="medium" variant="contained" color="secondary"
+                            {
+                                (quantities > 0) && <Button size="medium" variant="contained" color="secondary"
 
-                            >
-                                checkOut
-                            </Button>
+                                >
+                                    checkOut
+                                </Button>
+                            }
                         </div>
                     </div>
                 </Toolbar>
