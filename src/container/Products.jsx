@@ -26,7 +26,7 @@ const ProductsView = () => {
 
     useEffect(() => {
         if (!products.length) dispatch(loadProducts());
-    }, []);
+    }, [products.length, dispatch]);
 
     return (
         <>
