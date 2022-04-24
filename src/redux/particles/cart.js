@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { sumItems } from "../../utils";
 
 
 const reducer = createSlice({
@@ -21,14 +21,16 @@ const reducer = createSlice({
             return {
                 ...state,
                 list: [...state.list],
-                checkOut: false
+                checkOut: false,
+                ...sumItems(state.list)
             }
         },
         removeItem: (state, action) => {
             const newList = state.list.filter(item => item.id !== action.payload.id);
             return {
                 ...state,
-                list: [...newList]
+                list: [...newList],
+                ...sumItems(state.list)
             }
         },
         increaseItem: (state, action) => {
@@ -36,6 +38,7 @@ const reducer = createSlice({
             state.list[index].quantity++;
             return {
                 ...state,
+                ...sumItems(state.list)
             }
         },
         decreaseItem: (state, action) => {
@@ -43,6 +46,7 @@ const reducer = createSlice({
             state.list[index].quantity--;
             return {
                 ...state,
+                ...sumItems(state.list)
             }
         },
         checkout: (state, action) => {
