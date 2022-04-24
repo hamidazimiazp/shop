@@ -62,7 +62,7 @@ const Product = (props) => {
         <>
             <Card className={classes.root}>
                 <span className={classes.constSpan}>
-                    $ {price}
+                    ${price}
                 </span>
                 <CardActionArea>
                     <div className={classes.media}>
