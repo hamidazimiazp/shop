@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import { textShortener } from "../utils/tools";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../redux/particles/cart';
 
 
 const Product = (props) => {
@@ -49,7 +51,10 @@ const Product = (props) => {
 
     const classes = useStyles();
 
-    const { id, title, price, description, category, image } = props;
+    const { title, price, description, category, image } = props.data;
+
+
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -72,12 +77,14 @@ const Product = (props) => {
                 </CardActionArea>
                 <CardActions style={{ justifyContent: "space-around" }}>
                     <Button size="small" color="primary">
-                        <Link to={`/products/product/${id}`} style={{ textDecoration: "none", color: "#3f51b5" }}>Details</Link>
+                        <Link to={`/products/product/${props.id}`} style={{ textDecoration: "none", color: "#3f51b5" }}>Details</Link>
                     </Button>
                     <Button size="small" color="primary" style={{
                         background: "hotpink",
                         color: "#fff",
-                    }}>
+                    }}
+                        onClick={() => dispatch(addItem(props.data))}
+                    >
                         Add to Cart
                     </Button>
                 </CardActions>

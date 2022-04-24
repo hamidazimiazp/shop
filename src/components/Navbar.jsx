@@ -46,7 +46,7 @@ const Navbar = () => {
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.menuItems}>
                         <Typography variant="h6" className={classes.title}>
@@ -56,7 +56,7 @@ const Navbar = () => {
                             <Link to="/products/">products</Link>
                         </div>
                     </div>
-                    <Badge badgeContent={(quantities < 1) ? "0" : quantities} className={classes.badge} color="error" overlap="rectangular">
+                    <Badge badgeContent={quantities} className={classes.badge} color="error" overlap="rectangular">
                         <AddShoppingCart />
                     </Badge>
                 </Toolbar>

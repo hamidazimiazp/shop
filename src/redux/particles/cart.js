@@ -16,13 +16,11 @@ const slice = createSlice({
                 state.list.push({
                     ...action.payload,
                     quantity: 1
-                })
-            }
-            return {
-                ...state,
-                list: [...state.list],
-                checkOut: false,
-                ...sumItems(state.list)
+                });
+                state.checkOut = false;
+                const { itemsCounter, totalPrice } = sumItems(state.list);
+                state.itemsCounter = itemsCounter;
+                state.totalPrice = totalPrice;
             }
         },
         removeItem: (state, action) => {
@@ -67,5 +65,15 @@ const slice = createSlice({
         }
     }
 });
+
+
+export const {
+    addItem,
+    removeItem,
+    increaseItem,
+    decreaseItem,
+    checkOut,
+    clear
+} = slice.actions
 
 export const reducer = slice.reducer;

@@ -40,11 +40,7 @@ const ProductsView = () => {
                                 return <Grid item sm={6} md={4} lg={3} key={item.id}>
                                     <Product
                                         id={item.id}
-                                        title={item.title}
-                                        image={item.image}
-                                        category={item.category}
-                                        price={item.price}
-                                        description={item.description}
+                                        data={item}
                                     />
                                 </Grid>
                             })
