@@ -65,7 +65,7 @@ export const {
     removeItem,
     increaseItem,
     decreaseItem,
-    checkOut,
+    checkout,
     clear
 } = slice.actions
 
