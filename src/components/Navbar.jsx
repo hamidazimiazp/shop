@@ -123,7 +123,8 @@ const Navbar = () => {
                             <Link to="/">Shop</Link>
                         </Typography>
                         <div className={classes.linkWrapper}>
-                            <Link to="/products/">products</Link>
+                            <Link to="/products/">Products</Link>
+                            <Link to="/cart/">Cart</Link>
                         </div>
                     </div>
                     <Badge badgeContent={quantities === 0 ? "0" : quantities} className={classes.badge} color="error" overlap="rectangular">
