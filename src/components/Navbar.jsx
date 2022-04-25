@@ -138,7 +138,7 @@ const Navbar = () => {
                             <Button size="small" variant="contained" color="primary"
 
                             >
-                                View Cart
+                                <Link to="/cart/" style={{ color: "#fff", textDecoration: "none" }}>View Cart</Link>
                             </Button>
                         </div>
                         {
