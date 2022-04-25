@@ -65,6 +65,9 @@ const ProductDetail = () => {
             "&:hover": {
                 background: "orange"
             }
+        },
+        btn2: {
+            fontSize: 20
         }
     }));
 
@@ -100,7 +103,7 @@ const ProductDetail = () => {
                         <div>
                             {
                                 (quntityCount(state, id) > 1) &&
-                                <Button classes size="medium" variant="contained" color="primary"
+                                <Button className={classes.btn2} size="medium" variant="contained" color="primary"
                                     onClick={() => dispatch(decreaseItem(product))}
                                 >
                                     -
@@ -108,7 +111,7 @@ const ProductDetail = () => {
                             }
                             {
                                 (quntityCount(state, id) === 1) &&
-                                <Button size="medium" variant="contained" color="secondary"
+                                <Button className={classes.btn2} size="medium" variant="contained" color="secondary"
                                     onClick={() => dispatch(removeItem(product))}
                                 >
                                     <Delete />
@@ -120,13 +123,13 @@ const ProductDetail = () => {
                             }
                             {
                                 isInCart(state, id) ?
-                                    <Button size="medium" variant="contained" color="primary"
+                                    <Button className={classes.btn2} size="medium" variant="contained" color="primary"
                                         onClick={() => dispatch(increaseItem(product))}
                                     >
                                         +
                                     </Button>
                                     :
-                                    <Button size="medium" variant="contained" color="primary"
+                                    <Button className={classes.btn2} size="medium" variant="contained" color="primary"
                                         onClick={() => dispatch(addItem(product))}
                                     >
                                         Add to Cart
