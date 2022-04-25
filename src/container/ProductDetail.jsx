@@ -7,7 +7,7 @@ import { isInCart, quntityCount } from '../utils/tools';
 import { Delete } from '@material-ui/icons';
 
 
-const ProductDetail = () => {
+const ProductDetailView = () => {
 
     const useStyles = makeStyles(theme => ({
         container: {
@@ -97,7 +97,7 @@ const ProductDetail = () => {
                     <div className={classes.buttons}>
                         <div>
                             <Button className={`${classes.btn} ${classes.btnPrice}`} variant="contained">
-                                ${price}
+                                {`$${price}`}
                             </Button>
                         </div>
                         <div>
@@ -143,4 +143,4 @@ const ProductDetail = () => {
     );
 }
 
-export default ProductDetail;
+export default ProductDetailView;
