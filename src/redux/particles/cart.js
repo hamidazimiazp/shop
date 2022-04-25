@@ -45,20 +45,16 @@ const slice = createSlice({
             state.totalPrice = totalPrice;
         },
         checkout: (state, action) => {
-            return {
-                list: [],
-                totalPrice: 0,
-                itemsCounter: 0,
-                checkOut: true
-            }
+            state.list = [];
+            state.checkOut = true;
+            state.totalPrice = 0;
+            state.itemsCounter = 0;
         },
         clear: (state, action) => {
-            return {
-                list: [],
-                totalPrice: 0,
-                itemsCounter: 0,
-                checkOut: false
-            }
+            state.list = [];
+            state.checkOut = false;
+            state.totalPrice = 0;
+            state.itemsCounter = 0;
         }
     }
 });
