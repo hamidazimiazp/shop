@@ -21,8 +21,8 @@ const ProductDetail = () => {
             borderRadius: 10,
         },
         image: {
-            maxWidth: 350,
-            maxHeight: 450
+            maxWidth: 300,
+            maxHeight: 300
         },
         detailsContent: {
             textAlign: "left",
