@@ -170,13 +170,6 @@ const Navbar = () => {
                             <Typography variant="h6" color="initial">
                                 Total Price : {`$${totalPrice}`}
                             </Typography>
-                            {
-                                (quantities > 0) && <Button size="medium" variant="contained" color="secondary"
-
-                                >
-                                    checkOut
-                                </Button>
-                            }
                         </div>
                     </div>
                 </Toolbar>
