@@ -97,7 +97,7 @@ const Cart = () => {
     const cart = useSelector(state => state.entities.cart.list);
     const quantities = useSelector(state => state.entities.cart.itemsCounter);
     const totalPrice = useSelector(state => state.entities.cart.totalPrice);
-    const isCheckout = useSelector(state => state.entities.cart.checkout);
+    const isCheckout = useSelector(state => state.entities.cart.checkOut);
     const dispatch = useDispatch();
 
     return (
@@ -125,30 +125,33 @@ const Cart = () => {
             <Grid item sm={12} md={4} className={classes.conItem}>
                 <div className={classes.detailWrapper}>
                     {
-                        (isCheckout) ?
-                            "Success"
+                        (isCheckout === false && quantities === 0) ?
+                            "Cart is Empty"
                             :
-                            <>
-                                <p className={classes.detailP}>
-                                    Total Items : <span style={{ color: "orangered" }}>{quantities}</span>
-                                </p>
-                                <p className={classes.detailP}>
-                                    Total Payment : <span style={{ color: "orangered" }}>{`$${totalPrice}`}</span>
-                                </p>
-                                <br />
-                                <div className={classes.actions}>
-                                    <Button className={classes.btn2} size="medium" color="secondary"
-                                        onClick={() => dispatch(clear())}
-                                    >
-                                        Clear
-                                    </Button>
-                                    <Button className={`${classes.btn2} ${classes.checkoutBtn}`} size="medium" variant="contained" color="primary"
-                                        onClick={() => dispatch(checkout())}
-                                    >
-                                        CheckOut
-                                    </Button>
-                                </div>
-                            </>
+                            (isCheckout && quantities === 0) ?
+                                "Success"
+                                :
+                                <>
+                                    <p className={classes.detailP}>
+                                        Total Items : <span style={{ color: "orangered" }}>{quantities}</span>
+                                    </p>
+                                    <p className={classes.detailP}>
+                                        Total Payment : <span style={{ color: "orangered" }}>{`$${totalPrice}`}</span>
+                                    </p>
+                                    <br />
+                                    <div className={classes.actions}>
+                                        <Button className={classes.btn2} size="medium" color="secondary"
+                                            onClick={() => dispatch(clear())}
+                                        >
+                                            Clear
+                                        </Button>
+                                        <Button className={`${classes.btn2} ${classes.checkoutBtn}`} size="medium" variant="contained" color="primary"
+                                            onClick={() => dispatch(checkout())}
+                                        >
+                                            CheckOut
+                                        </Button>
+                                    </div>
+                                </>
                     }
                 </div>
             </Grid>
