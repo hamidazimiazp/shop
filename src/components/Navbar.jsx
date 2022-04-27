@@ -3,10 +3,9 @@ import { AppBar, Toolbar, Typography, Badge, Grid, Button } from '@material-ui/c
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AddShoppingCart } from '@material-ui/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { isInCart, quntityCount, textShortener } from "../utils/tools";
-import { addItem, increaseItem, decreaseItem, removeItem } from "../redux/particles/cart";
-import { Delete } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import { textShortener } from "../utils/tools";
+import CartActionButtons from './CartActionButtons';
 
 
 
@@ -108,11 +107,9 @@ const Navbar = () => {
 
     const classes = useStyles();
 
-    const dispatch = useDispatch();
     const quantities = useSelector(state => state.entities.cart.itemsCounter);
     const totalPrice = useSelector(state => state.entities.cart.totalPrice);
     const cart = useSelector(state => state.entities.cart.list);
-    const state = useSelector(state => state.entities.cart);
 
     return (
         <div className={classes.root}>
@@ -158,40 +155,7 @@ const Navbar = () => {
                                                 <Grid item sm={8}>
                                                     <h4>{textShortener(item.title, 22)}</h4>
                                                     <div className={classes.buttonsWrapper}>
-                                                        {
-                                                            (quntityCount(state, item.id) > 1) &&
-                                                            <Button classes size="medium" variant="contained" color="primary"
-                                                                onClick={() => dispatch(decreaseItem(item))}
-                                                            >
-                                                                -
-                                                            </Button>
-                                                        }
-                                                        {
-                                                            (quntityCount(state, item.id) === 1) &&
-                                                            <Button size="medium" variant="contained" color="secondary"
-                                                                onClick={() => dispatch(removeItem(item))}
-                                                            >
-                                                                <Delete />
-                                                            </Button>
-                                                        }
-                                                        {
-                                                            (quntityCount(state, item.id) > -1) &&
-                                                            <span style={{ margin: "0 12px", color: "#3f51b5" }} >{quntityCount(state, item.id)}</span>
-                                                        }
-                                                        {
-                                                            isInCart(state, item.id) ?
-                                                                <Button size="medium" variant="contained" color="primary"
-                                                                    onClick={() => dispatch(increaseItem(item))}
-                                                                >
-                                                                    +
-                                                                </Button>
-                                                                :
-                                                                <Button size="medium" variant="contained" color="primary"
-                                                                    onClick={() => dispatch(addItem(item))}
-                                                                >
-                                                                    Add to Cart
-                                                                </Button>
-                                                        }
+                                                        <CartActionButtons data={item} />
                                                     </div>
                                                 </Grid>
                                             </Grid>

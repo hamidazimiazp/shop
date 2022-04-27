@@ -1,16 +1,12 @@
 import React from 'react'
 import { Button, Grid, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { isInCart, quntityCount, textShortener } from '../utils/tools';
+import { textShortener } from '../utils/tools';
 import {
-    addItem,
     checkout,
-    clear,
-    decreaseItem,
-    increaseItem,
-    removeItem
+    clear
 } from '../redux/particles/cart';
-import { Delete } from '@material-ui/icons';
+import CartActionButtons from '../components/CartActionButtons';
 
 const Cart = () => {
     const useStyles = makeStyles(theme => ({
@@ -99,7 +95,6 @@ const Cart = () => {
     const classes = useStyles();
 
     const cart = useSelector(state => state.entities.cart.list);
-    const state = useSelector(state => state.entities.cart);
     const quantities = useSelector(state => state.entities.cart.itemsCounter);
     const totalPrice = useSelector(state => state.entities.cart.totalPrice);
     const isCheckout = useSelector(state => state.entities.cart.checkout);
@@ -119,40 +114,7 @@ const Cart = () => {
                                         <span className={classes.price}>{`$${item.price}`}</span>
                                     </div>
                                     <div className={classes.buttons}>
-                                        {
-                                            (quntityCount(state, item.id) > 1) &&
-                                            <Button className={classes.btn2} size="medium" variant="contained" color="primary"
-                                                onClick={() => dispatch(decreaseItem(item))}
-                                            >
-                                                -
-                                            </Button>
-                                        }
-                                        {
-                                            (quntityCount(state, item.id) === 1) &&
-                                            <Button className={classes.btn2} size="medium" variant="contained" color="secondary"
-                                                onClick={() => dispatch(removeItem(item))}
-                                            >
-                                                <Delete />
-                                            </Button>
-                                        }
-                                        {
-                                            (quntityCount(state, item.id) > -1) &&
-                                            <span style={{ margin: "0 12px", color: "#3f51b5" }} >{quntityCount(state, item.id)}</span>
-                                        }
-                                        {
-                                            isInCart(state, item.id) ?
-                                                <Button className={classes.btn2} size="medium" variant="contained" color="primary"
-                                                    onClick={() => dispatch(increaseItem(item))}
-                                                >
-                                                    +
-                                                </Button>
-                                                :
-                                                <Button className={classes.btn2} size="medium" variant="contained" color="primary"
-                                                    onClick={() => dispatch(addItem(item))}
-                                                >
-                                                    Add to Cart
-                                                </Button>
-                                        }
+                                        <CartActionButtons data={item} />
                                     </div>
                                 </div>
                             </div>
