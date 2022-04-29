@@ -3,7 +3,7 @@ import reducer from "../reducer/index";
 import { api } from "../middlewares/api";
 import { func } from "../middlewares/func";
 
-export default function () {
+export default function store() {
     return configureStore({
         reducer,
         middleware: [
